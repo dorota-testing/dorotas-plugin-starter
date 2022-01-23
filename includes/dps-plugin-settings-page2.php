@@ -77,24 +77,13 @@ function dps_options_page_html2()
 	if (!current_user_can('manage_options')) {
 		return;
 	}
-
 	// show error/update messages
 	//  *****  NOTE - the line below needs to be uncomented if plugin has its own page in menu. If it is in submenu of settings or enything else, should be commented out. ****
 	settings_errors('dps_messages_2');
 ?>
 	<div class="wrap">
 		<h1><?php echo esc_html(get_admin_page_title()); ?></h1>
-		<form action="options.php" method="post">
-			<?php
-			// output security fields for the registered setting "dps2"
-			settings_fields('dps2');
-			// output setting sections and their fields
-			// (sections are registered for "dp2s", each field is registered to a specific section)
-			do_settings_sections('dps2');
-			// output save settings button
-			submit_button('Save Settings');
-			?>
-		</form>
+		<p>This is second page.</p>
 	</div>
 <?php
 }

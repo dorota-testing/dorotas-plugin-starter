@@ -63,32 +63,7 @@ function dps_settings_init()
 			'class' => 'dps_row_wrap',
 		]
 	);
-	// register a new field in the "dps_first_section" section, inside the "dps" page
-	add_settings_field(
-		'dps_image_id', // as of WP 4.6 this value is used only internally
-		// use $args' label_for to populate the id inside the callback
-		__('Image', 'dps'),
-		'dps_image_id_cb',
-		'dps',
-		'dps_second_section',
-		[
-			'label_for' => 'dps_image_id',
-			'class' => 'dps_row_wrap',
-		]
-	);
-	// register a new field in the "dps_first_section" section, inside the "dps" page
-	add_settings_field(
-		'dps_image2_id', // as of WP 4.6 this value is used only internally
-		// use $args' label_for to populate the id inside the callback
-		__('Image2', 'dps'),
-		'dps_image2_id_cb',
-		'dps',
-		'dps_second_section',
-		[
-			'label_for' => 'dps_image2_id',
-			'class' => 'dps_row_wrap',
-		]
-	);
+
 }
 
 /**
@@ -212,82 +187,9 @@ function dps_textarea_cb($args)
 	</p>
 <?php
 }
-function dps_image_id_cb($args)
-{
-	// get the value of the setting we've registered with register_setting()
-	$options = get_option('dps_options');
-	$simple_popup_image_image_id = (isset($options['dps_image_id']) ? $options['dps_image_id'] : '');
-	//echo '<pre>'; print_r($options); echo '</pre>';
-	// output the field
-?>
-	<table>
-		<tr>
-			<td>
-				<table>
-					<tr>
-						<td>
-							<input class="image-id" type="hidden" name="dps_options[<?php echo esc_attr($args['label_for']); ?>]" value="<?= $simple_popup_image_image_id; ?>" />
-							<input type="button" class="button dps_upload-button" value="Select Image" />
-						</td>
-						<td>
-							<button class="button dps_deleteIcon" type="button" data-placeholder="<?= esc_url(plugins_url('img/placeholder.png', __FILE__)); ?>">Mark for Deletion</button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<small>Image should be 540px wide and 400px high.</small>
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td>
-				<img src="<?= ($simple_popup_image_image_id == '' ? esc_url(plugins_url('img/placeholder.png', __FILE__)) : wp_get_attachment_image_src($simple_popup_image_image_id)[0]) ?>" width="70" style="width: 70px;" />
-			</td>
-		</tr>
-
-	</table>
-<?php
-}
-function dps_image2_id_cb($args)
-{
-	// get the value of the setting we've registered with register_setting()
-	$options = get_option('dps_options');
-	$image_id = (isset($options['dps_image2_id']) ? $options['dps_image2_id'] : '');
-	//echo '<pre>'; print_r($options); echo '</pre>';
-	// output the field
-?>
-	<table>
-		<tr>
-			<td>
-				<table>
-					<tr>
-						<td>
-							<input class="image-id" type="hidden" name="dps_options[<?php echo esc_attr($args['label_for']); ?>]" value="<?= $image_id; ?>" />
-							<input type="button" class="button dps_upload-button" value="Select Image" />
-						</td>
-						<td>
-							<button class="button dps_deleteIcon" type="button" data-placeholder="<?= esc_url(plugins_url('img/placeholder.png', __FILE__)); ?>">Mark for Deletion</button>
-						</td>
-					</tr>
-					<tr>
-						<td colspan="2">
-							<small>Image should be 540px wide and 400px high.</small>
-						</td>
-					</tr>
-				</table>
-			</td>
-			<td>
-				<img src="<?= ($image_id == '' ? esc_url(plugins_url('img/placeholder.png', __FILE__)) : wp_get_attachment_image_src($image_id)[0]) ?>" width='70' style='width: 70px;' />
-			</td>
-		</tr>
-
-	</table>
-<?php
-}
 
 
 /**
- * top level menu: ???
  * callback functions
  */
 function dps_options_page_html()
